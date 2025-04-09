@@ -1,0 +1,231 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 220 20% 10%;
+
+    --card: 220 25% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 220 25% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 265 87% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 265 25% 94%;
+    --secondary-foreground: 265 40% 20%;
+
+    --muted: 265 15% 94%;
+    --muted-foreground: 265 10% 40%;
+
+    --accent: 265 15% 94%;
+    --accent-foreground: 265 40% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 265 15% 90%;
+    --input: 265 15% 90%;
+    --ring: 265 70% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 265 87% 40%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 265 13% 91%;
+    --sidebar-ring: 265 70% 50%;
+  }
+
+  .dark {
+    --background: 265 20% 10%;
+    --foreground: 265 10% 98%;
+
+    --card: 265 25% 12%;
+    --card-foreground: 265 10% 98%;
+
+    --popover: 265 25% 12%;
+    --popover-foreground: 265 10% 98%;
+
+    --primary: 265 70% 60%;
+    --primary-foreground: 265 10% 98%;
+
+    --secondary: 265 15% 15%;
+    --secondary-foreground: 265 10% 98%;
+
+    --muted: 265 15% 15%;
+    --muted-foreground: 265 10% 60%;
+
+    --accent: 265 15% 15%;
+    --accent-foreground: 265 10% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 265 15% 20%;
+    --input: 265 15% 20%;
+    --ring: 265 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-700/20 shadow-glass;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-auto-rows: minmax(250px, auto);
+    gap: 1.5rem;
+  }
+
+  .drag-handle {
+    @apply cursor-move absolute top-3 right-3 opacity-50 hover:opacity-100 transition-opacity duration-200;
+  }
+
+  .story-link {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .velora-gradient {
+    @apply bg-gradient-to-br from-purple-600 to-indigo-700;
+  }
+  
+  .velora-card {
+    @apply bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-purple-100 dark:border-purple-900/30 shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .purple-gradient-bg {
+    @apply bg-gradient-to-b from-purple-50/30 via-transparent to-white/90 dark:from-purple-900/10 dark:via-transparent dark:to-gray-900/90;
+  }
+  
+  .purple-soft-bg {
+    background-color: #ffffff;
+    background-image: 
+      radial-gradient(circle at 15% 25%, #E5DEFF, transparent 25%),
+      radial-gradient(circle at 85% 15%, #D6BCFA, transparent 20%),
+      radial-gradient(circle at 75% 75%, #E9D5FF, transparent 30%),
+      radial-gradient(circle at 25% 60%, #F3E8FF, transparent 35%);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+.recharts-tooltip-wrapper {
+  @apply !shadow-lg !rounded-lg overflow-hidden;
+}
+
+.recharts-default-tooltip {
+  @apply !bg-card !border-border !border !px-3 !py-2 !rounded-lg;
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 400ms;
+}
+
+/* Add slide animations for messages */
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.3s ease forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease forwards;
+}
+
